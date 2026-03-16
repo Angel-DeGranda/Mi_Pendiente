@@ -1,0 +1,86 @@
+html {
+  --s: 200px; /* control the size*/
+  --c1: #ffffff;
+  --c2: #7748d5;
+  
+  --_g: #0000 8%,var(--c1) 0 17%,#0000 0 58%;
+  background: 
+    linear-gradient(135deg,#0000 20.5%,var(--c1) 0 29.5%,#0000 0) 0 calc(var(--s)/4),
+    linear-gradient( 45deg,var(--_g)) calc(var(--s)/2) 0,
+    linear-gradient(135deg,var(--_g),var(--c1) 0 67%,#0000 0),        
+    linear-gradient( 45deg,var(--_g),var(--c1) 0 67%,#0000 0 83%,var(--c1) 0 92%,#0000 0),
+    var(--c2); 
+  background-size: var(--s) var(--s);
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.login-card{
+    box-shadow: 3px 3px 20px gray;
+    padding: 10px;
+    border-radius: 15px;
+    width: 500px;
+    background-color: white;
+    color: #15212a;
+}
+
+.login-card-header{
+    text-align: center;
+}
+
+.login-card-titulo{
+    margin-bottom: 5px;
+}
+
+.login-form-form{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+label{
+    font-weight: bold;
+}
+
+input{
+    border: 2px solid black;
+    margin-bottom: 15px;
+    font-size: 25px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.login-form-mensaje-error{
+    margin-bottom: 15px;
+    color: #e80b08;
+    text-align: center;
+    font-weight: bold;
+}
+
+.login-form-button{
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: #066fe1;
+    font-size: 25px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-form-button:hover{
+    color: #e3e3e3;
+    background-color: #1458a0;
+}
+
