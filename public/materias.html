@@ -19,13 +19,13 @@
             <div>
                 <fieldset>
                     <legend class="legenda-lista-dias">Día(s) de la semana que tienes la clase:</legend>
-                    <label class="dia-label"><input type="checkbox" class="dia-semana">Lunes</label>
-                    <label class="dia-label"><input type="checkbox" class="dia-semana">Martes</label>
-                    <label class="dia-label"><input type="checkbox" class="dia-semana">Miércoles</label>
-                    <label class="dia-label"><input type="checkbox" class="dia-semana">Jueves</label>
-                    <label class="dia-label"><input type="checkbox" class="dia-semana">Viernes</label>
-                    <label class="dia-label"><input type="checkbox" class="dia-semana">Sábado</label>
-                    <label class="dia-label"><input type="checkbox" class="dia-semana">Domingo</label>
+                    <label class="dia-label"><input type="checkbox" class="dia-semana" value="Lunes">Lunes</label>
+                    <label class="dia-label"><input type="checkbox" class="dia-semana" value="Martes">Martes</label>
+                    <label class="dia-label"><input type="checkbox" class="dia-semana" value="Miercoles">Miércoles</label>
+                    <label class="dia-label"><input type="checkbox" class="dia-semana" value="Jueves">Jueves</label>
+                    <label class="dia-label"><input type="checkbox" class="dia-semana" value="Viernes">Viernes</label>
+                    <label class="dia-label"><input type="checkbox" class="dia-semana" value="Sabado">Sábado</label>
+                    <label class="dia-label"><input type="checkbox" class="dia-semana" value="Domingo">Domingo</label>
                 </fieldset>
             </div>
             <button type="submit" class="boton-alta">Guardar materia</button>
@@ -61,23 +61,23 @@
             <form id="form-editar-materia" class="form-editar">
                 <input type="hidden" id="form-editar-materia-id">
                 <label for="form-materia">Nombre de la materia:</label>
-                <input type="text" name="nombre-materia" id=" form-materia">
+                <input type="text" name="nombre-materia" id="form-editar-nombre-materia">
                 <div>
                     <fieldset>
                         <legend class="legenda-lista-dias">Día(s) de la semana que tienes la clase:</legend>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana">Lunes</label>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana">Martes</label>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana">Miércoles</label>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana">Jueves</label>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana">Viernes</label>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana">Sábado</label>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana">Domingo</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana" value="Martes">Martes</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana" value="Miercoles">Miércoles</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana" value="Jueves">Jueves</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana" value="Viernes">Viernes</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana" value="Sabado">Sábado</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana" value="Domingo">Domingo</label>
                     </fieldset>
                 </div>
                 <button type="submit" class="boton-alta">Guardar cambios</button>
             </form>
         </section>
     </div>
+    <script src="js/materias.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const supabase = require("./config/supabaseClient"); //Importación del modulo de supabase creado
 const authRoutes = require("./routes/authRoutes"); //Importamos las rutas
+const materiasRoutes = require("./routes/materiasRoutes");
 const {verificarSesion} = require("./middlewares/authMiddleware")
 require("dotenv").config();
 
@@ -25,6 +26,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+
+app.use("/api/materias", verificarSesion, materiasRoutes);
 
 //Inicio del servidor
 const PORT = process.env.PORT || 3600;
