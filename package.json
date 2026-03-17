@@ -1,0 +1,32 @@
+{
+  "name": "mi_pendiente",
+  "version": "1.0.0",
+  "description": "Aplicación de registro en horario",
+  "homepage": "https://github.com/Angel-DeGranda/Mi_Pendiente#readme",
+  "bugs": {
+    "url": "https://github.com/Angel-DeGranda/Mi_Pendiente/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Angel-DeGranda/Mi_Pendiente.git"
+  },
+  "license": "MIT",
+  "author": "Ángel David De Granda Santos",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.99.2",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
