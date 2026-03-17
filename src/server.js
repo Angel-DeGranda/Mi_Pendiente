@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 
 //Inicio del servidor
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3600;
 
 app.listen(PORT, () => {
     console.log("Servidor arrancado en http://localhost:3600");
