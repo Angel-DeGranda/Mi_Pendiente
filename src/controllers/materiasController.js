@@ -1,14 +1,12 @@
  const supabase = require("../config/supabaseClient");
 
+
  const getMaterias = async (req, res) => {
-    const token = require.cookies.session;
 
-    const {data: userData} = await supabase.getUser(token);
-
-    const {data, error} = await supabase
+    const {data, error} = await req.supabase
     .from("materias")
     .select("*")
-    .eq("user_id", userData.user.id);
+    .eq("user_id", req.user.id);
 
     if(error){
         return res.status(500).json({error: error.message});
@@ -18,13 +16,11 @@
  }
 
  const createMateria = async (req, res) => {
-    const {nombre, dias_clase} = res.body;
+    const {nombre, dias_clase} = req.body;
     
-    const {data: userData} = await supabase.auth.getUser(token);
-    
-    const {data, error} = await supabase
+    const {data, error} = await req.supabase
     .from("materias")
-    .insert([{nombre, dias_clase, user_id: userData.user.id}])
+    .insert([{nombre, dias_clase, user_id: req.user.id}])
     .select();
 
     if(error){
@@ -39,7 +35,7 @@
 
     const {nombre, dias_clase} = req.body;
 
-    const{data, error} = await supabase
+    const{data, error} = await req.supabase
     .from("materias")
     .update({nombre, dias_clase})
     .eq("id", id)
@@ -53,9 +49,9 @@
  }
 
  const deleteMateria = async (req, res) => {
-    const {id} = res.params;
+    const {id} = req.params;
 
-    const {error} = await supabase
+    const {error} = await req.supabase
     .from("materias")
     .delete()
     .eq("id", id);

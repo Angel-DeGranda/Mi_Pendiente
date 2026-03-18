@@ -1,4 +1,5 @@
 const supabase = require("../config/supabaseClient");
+ const { createClient } = require("@supabase/supabase-js");
 
 const verificarSesion = async (req, res, next) => {
     const token = req.cookies.session;
@@ -12,6 +13,11 @@ const verificarSesion = async (req, res, next) => {
     if(error || !data.user){
         return res.status(401).redirect("/");
     }
+
+    req.user = data.user;
+    req.supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY, {
+        global: { headers: { Authorization: `Bearer ${token}` } }
+    });
 
     next();
 }
