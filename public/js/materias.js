@@ -10,23 +10,29 @@ const renderMaterias = (materias) => {
     contenedor.innerHTML="";
 
     materias.forEach(materia => {
-        const diasItems = (materia.dias_clase || []).map(dia => `<li>${dia}</li>`).join("");
+        // const diasItems = (materia.dias_clase || []).map(dia => `<li>${dia}</li>`).join("");
         
-        const card = `
-        <article class="card">
-                <header class="card-header">
-                    <h3 class="card-title">${materia.nombre}</h3>
-                </header>
-                <div class="card-listado-contenedor">
-                    <p class="listado-titulo"><strong>Días de clase:</strong></p>
-                    <ul class="dias-lista">${diasItems}</ul>
-                </div>
-                <button class="card-button-editar" data-id="${materia.id}">Editar</button>
-                <button class="card-button-eliminar" data-id="${materia.id}" data-nombre="${materia.nombre}">Eliminar</button>
-            </article>
-        `;
+        // const card = `
+        // <article class="card">
+        //         <header class="card-header">
+        //             <h3 class="card-title">${materia.nombre}</h3>
+        //         </header>
+        //         <div class="card-listado-contenedor">
+        //             <p class="listado-titulo"><strong>Días de clase:</strong></p>
+        //             <ul class="dias-lista">${diasItems}</ul>
+        //         </div>
+        //         <button class="card-button-editar" data-id="${materia.id}">Editar</button>
+        //         <button class="card-button-eliminar" data-id="${materia.id}" data-nombre="${materia.nombre}">Eliminar</button>
+        //     </article>
+        // `;
 
-        contenedor.innerHTML += card;
+        // contenedor.innerHTML += card;
+
+        const card = document.createElement("article");
+        const header = document.createElement("header");
+        const titulo = document.createElement("h3");
+        const div = document.createElement("div");
+        
     });
 }
 
