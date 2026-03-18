@@ -21,8 +21,8 @@ const renderMaterias = (materias) => {
                     <p class="listado-titulo"><strong>Días de clase:</strong></p>
                     <ul class="dias-lista">${diasItems}</ul>
                 </div>
-                <button class="card-button-editar">Editar</button>
-                <button class="card-button-eliminar">Eliminar</button>
+                <button class="card-button-editar" data-id="${materia.id}">Editar</button>
+                <button class="card-button-eliminar" data-id="${materia.id}" data-nombre="${materia.nombre}">Eliminar</button>
             </article>
         `;
 

@@ -49,15 +49,29 @@
                 <div>
                     <fieldset>
                         <legend class="legenda-lista-dias">Día(s) de la semana que tienes la clase:</legend>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana" value="Martes">Martes</label>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana" value="Miercoles">Miércoles</label>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana" value="Jueves">Jueves</label>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana" value="Viernes">Viernes</label>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana" value="Sabado">Sábado</label>
-                        <label class="dia-label"><input type="checkbox" class="dia-semana" value="Domingo">Domingo</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana-editar" value="Lunes">Lunes</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana-editar" value="Martes">Martes</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana-editar" value="Miercoles">Miércoles</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana-editar" value="Jueves">Jueves</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana-editar" value="Viernes">Viernes</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana-editar" value="Sabado">Sábado</label>
+                        <label class="dia-label"><input type="checkbox" class="dia-semana-editar" value="Domingo">Domingo</label>
                     </fieldset>
                 </div>
                 <button type="submit" class="boton-alta">Guardar cambios</button>
+            </form>
+        </section>
+    </div>
+    <div id="modal-eliminar-materia" class="modal">
+        <section>
+            <header class="modal-header">
+                <h2>¿Deseas eliminar esta materia? - <span class="materia-titulo-eliminar"></span></h2>
+                <button id="cerrar-modal-eliminar" class="button-cerrar-modal-eliminar">&times;</button>
+            </header>
+            <form>
+                <input type="hidden" id="form-eliminar-materia-id">
+                <button type="button" class="boton-confirmar-cancelar">Cancelar</button>
+                <button type="submit" class="boton-confirmar-eliminar">Confirmar eliminar</button>
             </form>
         </section>
     </div>
