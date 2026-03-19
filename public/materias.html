@@ -16,6 +16,7 @@
         <form class="form-alta">
             <label for="form-materia">Nombre de la materia:</label>
             <input type="text" name="nombre-materia" id="form-materia" required>
+            <span class="error-nombre-alta">Solo se permiten letras, números, espacios y "/".</span>
             <div>
                 <fieldset>
                     <legend class="legenda-lista-dias">Día(s) de la semana que tienes la clase:</legend>
@@ -44,8 +45,9 @@
             </header>
             <form id="form-editar-materia" class="form-editar">
                 <input type="hidden" id="form-editar-materia-id">
-                <label for="form-materia">Nombre de la materia:</label>
+                <label for="form-editar-nombre-materia">Nombre de la materia:</label>
                 <input type="text" name="nombre-materia" id="form-editar-nombre-materia">
+                <span class="error-nombre-editar">Solo se permiten letras, números, espacios y "/".</span>
                 <div>
                     <fieldset>
                         <legend class="legenda-lista-dias">Día(s) de la semana que tienes la clase:</legend>
@@ -66,9 +68,8 @@
         <section>
             <header class="modal-header">
                 <h2>¿Deseas eliminar esta materia? - <span class="materia-titulo-eliminar"></span></h2>
-                <button id="cerrar-modal-eliminar" class="button-cerrar-modal-eliminar">&times;</button>
             </header>
-            <form>
+            <form id="form-eliminar-materia" class="form-eliminar">
                 <input type="hidden" id="form-eliminar-materia-id">
                 <button type="button" class="boton-confirmar-cancelar">Cancelar</button>
                 <button type="submit" class="boton-confirmar-eliminar">Confirmar eliminar</button>

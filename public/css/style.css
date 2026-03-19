@@ -381,3 +381,61 @@ body {
     gap: 0.6rem 1.2rem;
     margin-top: 0.3rem;
 }
+
+/* === MODAL ELIMINAR === */
+.form-eliminar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+}
+
+.boton-confirmar-cancelar {
+    padding: 0.6rem 1.4rem;
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.925rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.boton-confirmar-cancelar:hover {
+    background-color: #e2e8f0;
+}
+
+.boton-confirmar-eliminar {
+    padding: 0.6rem 1.4rem;
+    background-color: #e11d48;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.925rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.boton-confirmar-eliminar:hover {
+    background-color: #be123c;
+}
+
+.boton-confirmar-eliminar:active {
+    transform: scale(0.97);
+}
+
+/* === VALIDACIÓN === */
+.error-nombre-alta,
+.error-nombre-editar {
+    display: none;
+    color: #e11d48;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.error-nombre-alta.visible,
+.error-nombre-editar.visible {
+    display: block;
+}

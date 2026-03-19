@@ -39,6 +39,7 @@
     .from("materias")
     .update({nombre, dias_clase})
     .eq("id", id)
+    .eq("user_id", req.user.id)
     .select();
     
     if(error){
@@ -54,7 +55,8 @@
     const {error} = await req.supabase
     .from("materias")
     .delete()
-    .eq("id", id);
+    .eq("id", id)
+    .eq("user_id", req.user.id);
 
     if(error){
         return res.status(500).json({error: error.message});
