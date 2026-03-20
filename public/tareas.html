@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/tareas.css">
 </head>
+
 <body>
     <nav class="menu-principal">
         <h2 class="menu-principal-titulo">Mi Pendiente</h2>
@@ -18,18 +20,26 @@
         <h2 class="form-titulo">Agregar nueva tarea</h2>
         <form class="form-alta" id="form-alta-tarea">
             <label for="select-materia">Materia:</label>
-            <select name="" id="select-materia" class="form-alta-select-materia" required><option value="">Seleccione una materia</option></select>
+            <select name="" id="select-materia" class="form-alta-select-materia" required>
+                <option value="">Seleccione una materia</option>
+            </select>
+            <div class="dias-clase-materia oculto" id="dias-clase-materia"></div>
             <label for="form-alta-textarea-descripcion">Descripcion de la tarea:</label>
             <textarea name="" id="textarea-descripcion" class="form-alta-textarea-descripcion" rows="3" required></textarea>
+            <span class="mensaje-error-campo oculto" id="error-descripcion-alta">La descripción contiene caracteres no válidos. Caracteres permitidos: letras, números y / " ! - _ . , ; : ( ) ¿ ? = $ # % + @</span>
             <label>Prioridad:</label>
             <div class="form-alta-contenedor-prioridad">
-                <label for="form-prioridad-alta"><input type="radio" name="prioridad" id="form-prioridad-alta" class="form-alta-checkbox-prioridad" value="Alta">Alta</label>
-                <label for="form-prioridad-media"><input type="radio" name="prioridad" id="form-prioridad-media" class="form-alta-checkbox-prioridad" value="Media">Media</label>
-                <label for="form-prioridad-baja"><input type="radio" name="prioridad" id="form-prioridad-baja" class="form-alta-checkbox-prioridad" value="Baja">Baja</label>
+                <label for="form-prioridad-alta"><input type="radio" name="prioridad" id="form-prioridad-alta"
+                        class="form-alta-checkbox-prioridad" value="Alta">Alta</label>
+                <label for="form-prioridad-media"><input type="radio" name="prioridad" id="form-prioridad-media"
+                        class="form-alta-checkbox-prioridad" value="Media">Media</label>
+                <label for="form-prioridad-baja"><input type="radio" name="prioridad" id="form-prioridad-baja"
+                        class="form-alta-checkbox-prioridad" value="Baja">Baja</label>
             </div>
             <label for="input-fecha">Fecha de entrega:</label>
             <input type="date" id="input-fecha" class="form-alta-input-fecha" required>
-            <label for="checkbox-tiempo"><input type="checkbox" id="checkbox-tiempo" class="form-alta-checkbox-tiempo">¿Desea agregar hora de entrega?</label>
+            <label for="checkbox-tiempo"><input type="checkbox" id="checkbox-tiempo"
+                    class="form-alta-checkbox-tiempo">¿Desea agregar hora de entrega?</label>
             <label for="input-time" class="oculto">Hora de entrega:</label>
             <input type="time" id="input-time" class="form-alta-input-time oculto">
             <button type="submit" class="boton-alta">Guardar tarea</button>
@@ -39,38 +49,16 @@
     <section class="section-consulta">
         <h2 class="consulta-titulo">Tareas pendientes y sin realizar</h2>
         <div class="lista-tareas-contenedor" id="lista-tareas-activas">
-            <article class="card">
-                    <header class="card-header">
-                        <h3 class="card-title">Matemáticas</h3>
-                    </header>
-                    <div class="card-listado-contenedor">
-                        <p class="card-tarea-p-descripcion"> Resolver los ejercicios del capítulo 3 del libro.</p>
-                        <div class="card-tarea-contenedor-info">
-                            <span class="card-tarea-contenedor-fecha">Entrega: 25/03/2026</span>
-                            <span class="card-tarea-contenedor-hora"> a las 10:00</span>
-                        </div>
-                        <div class="card-tarea-contenedor-estados">
-                            <span class="card-tarea-contenedor-estado">Sin realizar</span>
-                            <span class="card-tarea-contenedor-anotacion">Me quede en el ejercicio 5</span>
-                        </div>
-                    </div>
-                    <div class="card-botones-contenedor">
-                        <button class="card-tarea-boton-pendiente">Marcar pendiente</button>
-                        <button class="card-tarea-boton-completar">Completar</button>
-                        <button class="card-tarea-boton-editar">Editar</button>
-                        <button class="card-tarea-boton-eliminar">Eliminar</button>
-                    </div>
-                </article>
+
         </div>
     </section>
     <section class="section-consulta">
         <h2 class="consulta-titulo">Tareas completadas</h2>
         <div class="lista-tareas-contenedor" id="lista-tareas-completadas">
-            
+
         </div>
     </section>
-
-        <div id="modal-pendiente" class="modal">
+    <div id="modal-pendiente" class="modal">
         <section>
             <header class="modal-header">
                 <h2>Marcar como pendiente</h2>
@@ -80,7 +68,58 @@
                 <input type="hidden" id="pendiente-tarea-id">
                 <label for="pendiente-anotacion">¿Por qué la dejas pendiente?</label>
                 <textarea id="pendiente-anotacion" rows="3"></textarea>
+                <span class="mensaje-error-campo oculto" id="error-anotacion-pendiente">La anotación contiene caracteres no válidos. Caracteres permitidos: letras, números y / " ! - _ . , ; : ( ) ¿ ? = $ # % + @</span>
                 <button type="submit" class="boton-alta">Guardar</button>
+            </form>
+        </section>
+    </div>
+
+    <div id="modal-editar-tarea" class="modal">
+        <section>
+            <header class="modal-header">
+                <h2>Editar tarea</h2>
+            </header>
+            <form id="form-editar-tarea" class="form-editar-tarea">
+                <input type="hidden" id="editar-tarea-id">
+                <div class="form-editar-tarea-scroll">
+                    <label for="">Materia:</label>
+                    <select id="editar-tarea-materia"></select>
+                    <label for="editar-tarea-descripcion">Descripción:</label>
+                    <textarea id="editar-tarea-descripcion" rows="3"></textarea>
+                    <span class="mensaje-error-campo oculto" id="error-descripcion-editar">La descripción contiene caracteres no válidos. Caracteres permitidos: letras, números y / " ! - _ . , ; : ( ) ¿ ? = $ # % + @</span>
+                    <label>Prioridad</label>
+                    <div class="form-alta-contenedor-prioridad">
+                        <label><input type="radio" name="prioridad-editar" value="Alta"> Alta</label>
+                        <label><input type="radio" name="prioridad-editar" value="Media"> Media</label>
+                        <label><input type="radio" name="prioridad-editar" value="Baja"> Baja</label>
+                    </div>
+                    <label for="editar-tarea-fecha">Fecha de entrega:</label>
+                    <input type="date" id="editar-tarea-fecha">
+                    <label for="editar-tarea-checkbox-tiempo"><input type="checkbox"
+                            id="editar-tarea-checkbox-tiempo">¿Tiene hora de entrega?</label>
+                    <label for="editar-tarea-time" id="editar-tarea-label-time" class="oculto">Hora de entrega:</label>
+                    <input type="time" id="editar-tarea-time" class="oculto">
+                    <div class="form-editaar-tarea-botones">
+                        <button type="submit" class="boton-confirmar-editar">Guardar cambios</button>
+                        <button type="button" id="cerrar-modal-editar-tarea"
+                            class="boton-confirmar-cancelar">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <div id="modal-eliminar-tarea" class="modal">
+        <section>
+            <header class="modal-header">
+                <h2>Eliminar tarea</h2>
+            </header>
+            <p>¿Estás seguro que deseas eliminar la tarea de <span class="tarea-titulo-eliminar"></span>?</p>
+            <form id="form-eliminar-tarea">
+                <input type="hidden" id="eliminar-tarea-id">
+                <button type="button" id="cerrar-modal-eliminar-tarea"
+                    class="boton-confirmar-cancelar">Cancelar</button>
+                <button type="submit" id="boton-confirmar-eliminar" class="boton-confirmar-eliminar">Eliminar</button>
             </form>
         </section>
     </div>
@@ -88,4 +127,5 @@
     <script src="js/tareas.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

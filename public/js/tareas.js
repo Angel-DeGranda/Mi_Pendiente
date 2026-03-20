@@ -12,40 +12,88 @@ const cerrarModalPendiente = document.getElementById("cerrar-modal-pendiente");
 const formPendiente = document.getElementById("form-pendiente");
 const inputPendienteTareaId = document.getElementById("pendiente-tarea-id");
 const textareaPendienteAnotacion = document.getElementById("pendiente-anotacion");
+const diasClaseMateria = document.getElementById("dias-clase-materia");
+
+const modalEditarTarea = document.getElementById("modal-editar-tarea");
+const cerrarModalEditarTarea = document.getElementById("cerrar-modal-editar-tarea");
+const formEditarTarea = document.getElementById("form-editar-tarea");
+const inputEditarTareaId = document.getElementById("editar-tarea-id");
+const selectEditarMateria = document.getElementById("editar-tarea-materia");
+const textareaEditarDescripcion = document.getElementById("editar-tarea-descripcion");
+const inputEditarFecha = document.getElementById("editar-tarea-fecha");
+const checkboxEditarTiempo = document.getElementById("editar-tarea-checkbox-tiempo");
+const labelEditarTime = document.getElementById("editar-tarea-label-time");
+const inputEditarTime = document.getElementById("editar-tarea-time");
+
+const modalEliminarTarea = document.getElementById("modal-eliminar-tarea");
+const cerrarModalEliminarTarea = document.getElementById("cerrar-modal-eliminar-tarea");
+const formEliminarTarea = document.getElementById("form-eliminar-tarea");
+const inputEliminarTareaId = document.getElementById("eliminar-tarea-id");
+const spanTareaTituloEliminar = document.querySelector(".tarea-titulo-eliminar");
+
+const errorDescripcionAlta = document.getElementById("error-descripcion-alta");
+const errorDescripcionEditar = document.getElementById("error-descripcion-editar");
+const errorAnotacionPendiente = document.getElementById("error-anotacion-pendiente");
+
+const caracteresPermitidos = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s\/""\!\-_.,;:()\¿?=$#%+@]*$/;
+
+const validarTexto = (texto) => caracteresPermitidos.test(texto);
+
 
 checkboxTiempo.addEventListener("change", () => {
     labelTiempo.classList.toggle("oculto");
     inputTime.classList.toggle("oculto");
 });
 
+
+let materiasData = [];
+
 const cargarMaterias = async () => {
     const response = await fetch("/api/materias");
     const data = await response.json();
 
-    if(response.ok){
+    if (response.ok) {
+        materiasData = data
         data.forEach(materia => {
             const option = document.createElement("option");
             option.value = materia.id;
             option.textContent = materia.nombre;
             selectMateria.appendChild(option);
         });
-    }else{
+    } else {
         console.error("Error al cargar materias: ", data.error);
     }
 }
+
+selectMateria.addEventListener("change", () => {
+    const materia = materiasData.find(m => String(m.id) === selectMateria.value);
+    diasClaseMateria.innerHTML = "";
+    if (materia && materia.dias_clase && materia.dias_clase.length > 0) {
+        materia.dias_clase.forEach(dia => {
+            const badge = document.createElement("span");
+            badge.className = "dia-badge";
+            badge.textContent = dia;
+            diasClaseMateria.appendChild(badge);
+        });
+        diasClaseMateria.classList.remove("oculto");
+    } else {
+        diasClaseMateria.classList.add("oculto");
+    }
+
+});
 
 const cargarTareas = async (completada) => {
     const response = await fetch(`/api/tareas?completada=${completada}`);
 
     const data = await response.json();
 
-    if(response.ok){
-        if(completada){
+    if (response.ok) {
+        if (completada) {
             renderTareas(data, listaTareasCompletadas);
-        }else{
+        } else {
             renderTareas(data, listaTareasActivas);
         }
-    }else{
+    } else {
         console.error("Error al cargar tareas: ", data.error);
     }
 }
@@ -97,8 +145,18 @@ const renderTareas = (tareas, contenedor) => {
         anotacion.className = "card-tarea-contenedor-anotacion";
         anotacion.textContent = tarea.anotacion ?? "";
 
+        const prioridad = document.createElement("span");
+        if (tarea.prioridad) {
+            prioridad.className = `card-tarea-prioridad card-tarea-prioridad-${tarea.prioridad.toLowerCase()}`;
+            prioridad.textContent = tarea.prioridad;
+        }
+
         estadosContenedor.appendChild(estado);
+        if (tarea.prioridad) {
+            estadosContenedor.appendChild(prioridad);
+        }
         estadosContenedor.appendChild(anotacion);
+
 
         cuerpo.appendChild(descripcion);
         cuerpo.appendChild(infoContenedor);
@@ -125,10 +183,55 @@ const renderTareas = (tareas, contenedor) => {
         const botonEditar = document.createElement("button");
         botonEditar.className = "card-tarea-boton-editar";
         botonEditar.textContent = "Editar";
+        botonEditar.addEventListener("click", async () => {
+            inputEditarTareaId.value = tarea.id;
+            textareaEditarDescripcion.value = tarea.descripcion;
+            inputEditarFecha.value = tarea.fecha_entrega
+
+            selectEditarMateria.innerHTML = "";
+            const response = await fetch("/api/materias");
+            const materias = await response.json();
+            materias.forEach(materia => {
+                const option = document.createElement("option");
+                option.value = materia.id;
+                option.textContent = materia.nombre;
+                if (String(materia.id) === String(tarea.materia_id)) {
+                    option.selected = true;
+                }
+                selectEditarMateria.appendChild(option);
+            });
+
+            document.querySelectorAll(`input[name="prioridad-editar"]`).forEach(r => r.checked = false);
+
+            if (tarea.prioridad) {
+                const radioSeleccionado = document.querySelector(`input[name="prioridad-editar"][value="${tarea.prioridad}"]`);
+                if (radioSeleccionado) {
+                    radioSeleccionado.checked = true;
+                }
+            }
+
+            if (tarea.hora_entrega) {
+                inputEditarTime.value = tarea.hora_entrega;
+                inputEditarTime.classList.remove("oculto");
+                labelEditarTime.classList.remove("oculto");
+                checkboxEditarTiempo.checked = true;
+            } else {
+                inputEditarTime.classList.add("oculto");
+                labelEditarTime.classList.add("oculto");
+                checkboxEditarTiempo.checked = false;
+            }
+
+            modalEditarTarea.classList.add("activo");
+        });
 
         const botonEliminar = document.createElement("button");
         botonEliminar.className = "card-tarea-boton-eliminar";
         botonEliminar.textContent = "Eliminar";
+        botonEliminar.addEventListener("click", () => {
+            inputEliminarTareaId.value = tarea.id;
+            spanTareaTituloEliminar.textContent = tarea.materias.nombre;
+            modalEliminarTarea.classList.add("activo");
+        });
 
         botonesContenedor.appendChild(botonPendiente);
         botonesContenedor.appendChild(botonCompletar);
@@ -145,16 +248,16 @@ const renderTareas = (tareas, contenedor) => {
 const cambiarEstado = async (id, completada, anotacion) => {
     const response = await fetch(`/api/tareas/${id}/estado`, {
         method: "PATCH",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({completada, anotacion})
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ completada, anotacion })
     });
 
     const data = await response.json();
 
-    if(response.ok){
+    if (response.ok) {
         cargarTareas(false);
         cargarTareas(true);
-    }else{
+    } else {
         console.error("Error al cambiar estado: ", data.error);
     }
 }
@@ -163,16 +266,88 @@ cerrarModalPendiente.addEventListener("click", () => {
     modalPendiente.classList.remove("activo");
 })
 
+checkboxEditarTiempo.addEventListener("change", () => {
+    labelEditarTime.classList.toggle("oculto");
+    inputEditarTime.classList.toggle("oculto");
+});
+
+cerrarModalEditarTarea.addEventListener("click", () => {
+    modalEditarTarea.classList.remove("activo");
+});
+
+cerrarModalEliminarTarea.addEventListener("click", () => {
+    modalEliminarTarea.classList.remove("activo");
+});
+
 formPendiente.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const id = inputPendienteTareaId.value;
     const anotacion = textareaPendienteAnotacion.value.trim();
 
+    if (!validarTexto(anotacion)) {
+        errorAnotacionPendiente.classList.remove("oculto");
+        return;
+    }
+    errorAnotacionPendiente.classList.add("oculto");
+
     await cambiarEstado(id, false, anotacion);
 
     textareaPendienteAnotacion.value = "";
     modalPendiente.classList.remove("activo");
+});
+
+formEditarTarea.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const id = inputEditarTareaId.value;
+    const materia_id = selectEditarMateria.value;
+    const descripcion = textareaEditarDescripcion.value.trim();
+    const prioridad = document.querySelector(`input[name="prioridad-editar"]:checked`)?.value;
+    const fecha_entrega = inputEditarFecha.value;
+    const hora_entrega = checkboxEditarTiempo.checked ? inputEditarTime.value : null;
+
+    if (!validarTexto(descripcion)) {
+        errorDescripcionEditar.classList.remove("oculto");
+        return;
+    }
+    errorDescripcionEditar.classList.add("oculto");
+
+    const response = await fetch(`/api/tareas/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ materia_id, descripcion, prioridad, fecha_entrega, hora_entrega })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        modalEditarTarea.classList.remove("activo");
+        cargarTareas(false);
+        cargarTareas(true);
+    } else {
+        console.error("Error al editar tarea: ", data.error);
+    }
+});
+
+formEliminarTarea.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const id = inputEliminarTareaId.value;
+
+    const response = await fetch(`/api/tareas/${id}`, {
+        method: "DELETE"
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        modalEliminarTarea.classList.remove("activo");
+        cargarTareas(false);
+        cargarTareas(true);
+    } else {
+        console.error("Error al eliminar tarea: ", data.error);
+    }
 });
 
 formAlta.addEventListener("submit", async (e) => {
@@ -182,22 +357,30 @@ formAlta.addEventListener("submit", async (e) => {
     const descripcion = textareaDescripcion.value.trim();
     const prioridad = document.querySelector(`input[name="prioridad"]:checked`)?.value;
     const fecha_entrega = inputFecha.value;
-    const hora_entrega = checkboxTiempo.checked ? inputTime.value: null;
+    const hora_entrega = checkboxTiempo.checked ? inputTime.value : null;
+
+    if (!validarTexto(descripcion)) {
+        errorDescripcionAlta.classList.remove("oculto");
+        return;
+    }
+    errorDescripcionAlta.classList.add("oculto");
 
     const response = await fetch("/api/tareas", {
-        method:"POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({materia_id, descripcion, prioridad, fecha_entrega, hora_entrega})
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ materia_id, descripcion, prioridad, fecha_entrega, hora_entrega })
     });
 
     const data = await response.json();
 
-    if(response.ok){
+    if (response.ok) {
         formAlta.reset();
+        diasClaseMateria.innerHTML = "";
+        diasClaseMateria.classList.add("oculto");
         inputTime.classList.add("oculto");
         labelTiempo.classList.add("oculto");
         cargarTareas(false);
-    }else{
+    } else {
         console.error("Error al crear tarea: ", data.error);
     }
 });

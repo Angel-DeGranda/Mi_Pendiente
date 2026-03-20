@@ -5,7 +5,7 @@ const {getTareas, createTarea, editTarea, deleteTarea, cambiarEstado} = require(
 
 router.get("/", getTareas);
 router.post("/", createTarea);
-router.put("/:id", deleteTarea);
+router.put("/:id", editTarea);
 router.delete("/:id", deleteTarea);
 router.patch("/:id/estado", cambiarEstado);
 

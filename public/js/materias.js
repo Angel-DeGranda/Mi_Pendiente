@@ -113,23 +113,6 @@ const renderMaterias = (materias) => {
     contenedor.innerHTML="";
 
     materias.forEach(materia => {
-        // const diasItems = (materia.dias_clase || []).map(dia => `<li>${dia}</li>`).join("");
-        
-        // const card = `
-        // <article class="card">
-        //         <header class="card-header">
-        //             <h3 class="card-title">${materia.nombre}</h3>
-        //         </header>
-        //         <div class="card-listado-contenedor">
-        //             <p class="listado-titulo"><strong>Días de clase:</strong></p>
-        //             <ul class="dias-lista">${diasItems}</ul>
-        //         </div>
-        //         <button class="card-button-editar" data-id="${materia.id}">Editar</button>
-        //         <button class="card-button-eliminar" data-id="${materia.id}" data-nombre="${materia.nombre}">Eliminar</button>
-        //     </article>
-        // `;
-
-        // contenedor.innerHTML += card;
 
         const card = document.createElement("article");
         card.className = "card";
@@ -226,7 +209,12 @@ const cargarMateria = async () => {
     const response = await fetch("/api/materias");
     const data = await response.json();
 
-    renderMaterias(data);
+    if(response.ok){
+        renderMaterias(data);
+    }else{
+        console.error("Error al cargar materias: ", data.error);
+    }
+    
 }
 
 cargarMateria();
