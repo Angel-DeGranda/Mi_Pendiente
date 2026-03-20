@@ -61,7 +61,7 @@ body {
     padding-bottom: 3rem;
 }
 
-/* === SECCIÓN AGREGAR MATERIA === */
+/* === SECCIÓN ALTA === */
 .section-alta {
     width: 100%;
     max-width: 680px;
@@ -91,60 +91,6 @@ body {
     font-size: 0.875rem;
     font-weight: 600;
     color: #475569;
-}
-
-.form-alta input[type="text"] {
-    padding: 0.6rem 0.9rem;
-    border: 1.5px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    color: #1e293b;
-    background-color: #f8fafc;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-}
-
-.form-alta input[type="text"]:focus {
-    border-color: #4f46e5;
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
-    background-color: #ffffff;
-}
-
-/* Checkboxes días */
-.form-alta fieldset {
-    border: 1.5px solid #e2e8f0;
-    border-radius: 10px;
-    padding: 0.85rem 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem 1.2rem;
-    margin-top: 0.3rem;
-}
-
-.form-alta fieldset legend,
-.form-alta div > label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #475569;
-}
-
-.dia-label {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #334155;
-    cursor: pointer;
-    user-select: none;
-}
-
-.dia-semana {
-    accent-color: #4f46e5;
-    width: 1rem;
-    height: 1rem;
-    cursor: pointer;
-    flex-shrink: 0;
 }
 
 .boton-alta {
@@ -182,13 +128,7 @@ body {
     margin-bottom: 1.25rem;
 }
 
-.tabla-materias-contenedor {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.25rem;
-}
-
-/* === CARDS === */
+/* === CARDS BASE === */
 .card {
     background-color: #ffffff;
     border-radius: 14px;
@@ -215,77 +155,7 @@ body {
     color: #ffffff;
 }
 
-.card-listado-contenedor {
-    padding: 1rem 1.25rem;
-    flex: 1;
-}
-
-.listado-titulo {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 0.5rem;
-}
-
-.dias-lista {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-}
-
-.dias-lista li {
-    background-color: #e0e7ff;
-    color: #3730a3;
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.25rem 0.65rem;
-    border-radius: 20px;
-}
-
-/* Botones de la card */
-.card-button-eliminar,
-.card-button-editar {
-    border: none;
-    padding: 0.55rem 0;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.card-button-editar {
-    background-color: #f1f5f9;
-    color: #475569;
-    border-top: 1px solid #e2e8f0;
-}
-
-.card-button-editar:hover {
-    background-color: #e2e8f0;
-}
-
-.card-button-eliminar {
-    background-color: #fff1f2;
-    color: #e11d48;
-    border-top: 1px solid #ffe4e6;
-}
-
-.card-button-eliminar:hover {
-    background-color: #ffe4e6;
-}
-
-/* === LEGEND (días de clase) === */
-.legenda-lista-dias {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #475569;
-    padding: 0 0.25rem;
-    margin-bottom: 0.5rem;
-}
-
-/* === MODAL EDITAR === */
+/* === MODAL BASE === */
 .modal {
     display: none;
     position: fixed;
@@ -342,54 +212,7 @@ body {
     color: #e11d48;
 }
 
-.form-editar {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1.5rem;
-}
-
-.form-editar label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #475569;
-}
-
-.form-editar input[type="text"] {
-    padding: 0.6rem 0.9rem;
-    border: 1.5px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    color: #1e293b;
-    background-color: #f8fafc;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-}
-
-.form-editar input[type="text"]:focus {
-    border-color: #4f46e5;
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
-    background-color: #ffffff;
-}
-
-.form-editar fieldset {
-    border: 1.5px solid #e2e8f0;
-    border-radius: 10px;
-    padding: 0.85rem 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem 1.2rem;
-    margin-top: 0.3rem;
-}
-
-/* === MODAL ELIMINAR === */
-.form-eliminar {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    padding: 1.25rem 1.5rem;
-}
-
+/* === BOTONES CONFIRMAR/CANCELAR === */
 .boton-confirmar-cancelar {
     padding: 0.6rem 1.4rem;
     background-color: #f1f5f9;
@@ -426,16 +249,22 @@ body {
     transform: scale(0.97);
 }
 
-/* === VALIDACIÓN === */
-.error-nombre-alta,
-.error-nombre-editar {
-    display: none;
-    color: #e11d48;
-    font-size: 0.8rem;
-    font-weight: 500;
+/* === CARD CONTENIDO COMPARTIDO === */
+.card-listado-contenedor {
+    padding: 1rem 1.25rem;
+    flex: 1;
 }
 
-.error-nombre-alta.visible,
-.error-nombre-editar.visible {
-    display: block;
+.listado-titulo {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+/* === UTILIDADES === */
+.oculto {
+    display: none;
 }

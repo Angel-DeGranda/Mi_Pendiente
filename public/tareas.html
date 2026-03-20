@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tareas.css">
+</head>
+<body>
+    <nav class="menu-principal">
+        <h2 class="menu-principal-titulo">Mi Pendiente</h2>
+        <a href="materias.html">materias</a>
+        <button class="menu-principal-cerrar-sesion">Cerrar sesión</button>
+    </nav>
+
+    <section class="section-alta">
+        <h2 class="form-titulo">Agregar nueva tarea</h2>
+        <form class="form-alta" id="form-alta-tarea">
+            <label for="select-materia">Materia:</label>
+            <select name="" id="select-materia" class="form-alta-select-materia" required><option value="">Seleccione una materia</option></select>
+            <label for="form-alta-textarea-descripcion">Descripcion de la tarea:</label>
+            <textarea name="" id="textarea-descripcion" class="form-alta-textarea-descripcion" rows="3" required></textarea>
+            <label>Prioridad:</label>
+            <div class="form-alta-contenedor-prioridad">
+                <label for="form-prioridad-alta"><input type="radio" name="prioridad" id="form-prioridad-alta" class="form-alta-checkbox-prioridad" value="Alta">Alta</label>
+                <label for="form-prioridad-media"><input type="radio" name="prioridad" id="form-prioridad-media" class="form-alta-checkbox-prioridad" value="Media">Media</label>
+                <label for="form-prioridad-baja"><input type="radio" name="prioridad" id="form-prioridad-baja" class="form-alta-checkbox-prioridad" value="Baja">Baja</label>
+            </div>
+            <label for="input-fecha">Fecha de entrega:</label>
+            <input type="date" id="input-fecha" class="form-alta-input-fecha" required>
+            <label for="checkbox-tiempo"><input type="checkbox" id="checkbox-tiempo" class="form-alta-checkbox-tiempo">¿Desea agregar hora de entrega?</label>
+            <label for="input-time" class="oculto">Hora de entrega:</label>
+            <input type="time" id="input-time" class="form-alta-input-time oculto">
+            <button type="submit" class="boton-alta">Guardar tarea</button>
+        </form>
+    </section>
+
+    <section class="section-consulta">
+        <h2 class="consulta-titulo">Tareas pendientes y sin realizar</h2>
+        <div class="lista-tareas-contenedor" id="lista-tareas-activas">
+            <article class="card">
+                    <header class="card-header">
+                        <h3 class="card-title">Matemáticas</h3>
+                    </header>
+                    <div class="card-listado-contenedor">
+                        <p class="card-tarea-p-descripcion"> Resolver los ejercicios del capítulo 3 del libro.</p>
+                        <div class="card-tarea-contenedor-info">
+                            <span class="card-tarea-contenedor-fecha">Entrega: 25/03/2026</span>
+                            <span class="card-tarea-contenedor-hora"> a las 10:00</span>
+                        </div>
+                        <div class="card-tarea-contenedor-estados">
+                            <span class="card-tarea-contenedor-estado">Sin realizar</span>
+                            <span class="card-tarea-contenedor-anotacion">Me quede en el ejercicio 5</span>
+                        </div>
+                    </div>
+                    <div class="card-botones-contenedor">
+                        <button class="card-tarea-boton-pendiente">Marcar pendiente</button>
+                        <button class="card-tarea-boton-completar">Completar</button>
+                        <button class="card-tarea-boton-editar">Editar</button>
+                        <button class="card-tarea-boton-eliminar">Eliminar</button>
+                    </div>
+                </article>
+        </div>
+    </section>
+    <section class="section-consulta">
+        <h2 class="consulta-titulo">Tareas completadas</h2>
+        <div class="lista-tareas-contenedor" id="lista-tareas-completadas">
+            
+        </div>
+    </section>
+
+        <div id="modal-pendiente" class="modal">
+        <section>
+            <header class="modal-header">
+                <h2>Marcar como pendiente</h2>
+                <button id="cerrar-modal-pendiente" class="button-cerrar-modal">&times;</button>
+            </header>
+            <form id="form-pendiente" class="form-pendiente">
+                <input type="hidden" id="pendiente-tarea-id">
+                <label for="pendiente-anotacion">¿Por qué la dejas pendiente?</label>
+                <textarea id="pendiente-anotacion" rows="3"></textarea>
+                <button type="submit" class="boton-alta">Guardar</button>
+            </form>
+        </section>
+    </div>
+
+    <script src="js/tareas.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,6 +1,3 @@
- const supabase = require("../config/supabaseClient");
-
-
  const getMaterias = async (req, res) => {
 
     const {data, error} = await req.supabase

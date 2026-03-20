@@ -1,0 +1,209 @@
+/* === FORM ALTA - INPUTS EXCLUSIVOS DE TAREAS === */
+.form-alta-select-materia,
+.form-alta-textarea-descripcion,
+.form-alta-input-fecha,
+.form-alta-input-time {
+    padding: 0.6rem 0.9rem;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #1e293b;
+    background-color: #f8fafc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    font-family: inherit;
+}
+
+.form-alta-select-materia:focus,
+.form-alta-textarea-descripcion:focus,
+.form-alta-input-fecha:focus,
+.form-alta-input-time:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    background-color: #ffffff;
+}
+
+.form-alta-textarea-descripcion {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* === PRIORIDAD (radio buttons) === */
+.form-alta-contenedor-prioridad {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-alta-checkbox-prioridad {
+    accent-color: #4f46e5;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    margin-right: 0.35rem;
+}
+
+/* === CHECKBOX HORA === */
+.form-alta-checkbox-tiempo {
+    accent-color: #4f46e5;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    margin-right: 0.35rem;
+}
+
+/* === LISTA DE TAREAS === */
+.lista-tareas-contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* === MODAL PENDIENTE === */
+.form-pendiente {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.form-pendiente label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+.form-pendiente textarea {
+    padding: 0.6rem 0.9rem;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #1e293b;
+    background-color: #f8fafc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-pendiente textarea:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    background-color: #ffffff;
+}
+
+/* === CARD TAREA === */
+.card-tarea-p-descripcion {
+    font-size: 0.95rem;
+    color: #334155;
+    margin: 0;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.card-tarea-contenedor-info {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #64748b;
+    padding-top: 0.75rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.card-tarea-contenedor-estados {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-top: 0.75rem;
+}
+
+.card-tarea-contenedor-estado {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: #e2e8f0;
+    color: #475569;
+    width: fit-content;
+}
+
+.card-tarea-contenedor-anotacion {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    font-style: italic;
+}
+
+/* === BOTONES DE TAREA === */
+.card-botones-contenedor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.card-tarea-boton-pendiente {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #fef9c3;
+    color: #854d0e;
+    transition: background-color 0.2s;
+}
+
+.card-tarea-boton-pendiente:hover {
+    background-color: #fef08a;
+}
+
+.card-tarea-boton-completar {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #dcfce7;
+    color: #166534;
+    transition: background-color 0.2s;
+}
+
+.card-tarea-boton-completar:hover {
+    background-color: #bbf7d0;
+}
+
+.card-tarea-boton-editar {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    transition: background-color 0.2s;
+}
+
+.card-tarea-boton-editar:hover {
+    background-color: #e2e8f0;
+}
+
+.card-tarea-boton-eliminar {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #fff1f2;
+    color: #be123c;
+    transition: background-color 0.2s;
+}
+
+.card-tarea-boton-eliminar:hover {
+    background-color: #ffe4e6;
+}

@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const supabase = require("./config/supabaseClient"); //Importación del modulo de supabase creado
 const authRoutes = require("./routes/authRoutes"); //Importamos las rutas
 const materiasRoutes = require("./routes/materiasRoutes");
+const tareasRoutes = require("./routes/tareasRoutes");
 const {verificarSesion} = require("./middlewares/authMiddleware")
 require("dotenv").config();
 
@@ -14,7 +15,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 
-app.get("/materias.html", verificarSesion, (req, res) =>{
+app.get("/tareas.html", verificarSesion, (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/tareas.html"));
+});
+
+app.get("/materias.html", verificarSesion, (req, res) => {
     res.sendFile(path.join(__dirname, "../public/materias.html"));
 });
 
@@ -26,6 +31,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+
+app.use("/api/tareas", verificarSesion, tareasRoutes);
 
 app.use("/api/materias", verificarSesion, materiasRoutes);
 
