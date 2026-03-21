@@ -36,4 +36,12 @@ const logout = async (req, res) => {
     return res.status(200).json({message:"Sessión cerrada"});
 }
 
-module.exports = {login, logout};
+const userData = async (req, res) => {
+    return res.status(200).json({
+        id: req.user.id,
+        email: req.user.email,
+        nombre: req.user.user_metadata?.nombre ?? null
+    });
+}
+
+module.exports = {login, logout, userData};

@@ -19,7 +19,7 @@ loginForm.addEventListener("submit", async (e) => {
     if(!response.ok){
         document.querySelector(".login-form-mensaje-error").hidden = false;
     }else{
-        window.location.href = "/materias.html";
+        window.location.href = "/dashboard.html";
     }
 });
 

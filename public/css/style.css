@@ -46,6 +46,19 @@ html {
     transition: background-color 0.2s, border-color 0.2s;
 }
 
+.menu-principal a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+}
+
+.menu-principal a:hover {
+    opacity: 1;
+}
+
 .menu-principal-cerrar-sesion:hover {
     background-color: rgba(255, 255, 255, 0.15);
     border-color: #ffffff;
