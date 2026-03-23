@@ -39,6 +39,9 @@ const caracteresPermitidos = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s\/""\!\-_.,;:
 
 const validarTexto = (texto) => caracteresPermitidos.test(texto);
 
+const hoyISO = () =>  new Date().toLocaleDateString("en-CA");
+
+inputFecha.min = hoyISO();
 
 checkboxTiempo.addEventListener("change", () => {
     labelTiempo.classList.toggle("oculto");
@@ -138,7 +141,8 @@ const renderTareas = (tareas, contenedor) => {
         estadosContenedor.className = "card-tarea-contenedor-estados";
 
         const estado = document.createElement("span");
-        estado.className = "card-tarea-contenedor-estado";
+        const estadoValor = tarea.completada ? "Completada" : tarea.anotacion ? "Pendiente" : "Sin realizar";
+        estado.className = `card-tarea-contenedor-estado card-tarea-estado-${estadoValor}`;
         estado.textContent = tarea.completada ? "Completada" : tarea.anotacion ? "Pendiente" : "Sin realizar";
 
         const anotacion = document.createElement("span");
@@ -187,6 +191,8 @@ const renderTareas = (tareas, contenedor) => {
             inputEditarTareaId.value = tarea.id;
             textareaEditarDescripcion.value = tarea.descripcion;
             inputEditarFecha.value = tarea.fecha_entrega
+
+            inputEditarFecha.min = hoyISO();
 
             selectEditarMateria.innerHTML = "";
             const response = await fetch("/api/materias");

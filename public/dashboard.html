@@ -30,7 +30,7 @@
                 <span class="stat-numero" id="stat-pendientes">0</span>
                 <span class="stat-label">Pendientes</span>
             </div>
-            <div class="stat-card">
+            <div class="stat-card stat-card-completadas">
                 <span class="stat-numero" id="stat-completadas">0</span>
                 <span class="stat-label">Completadas</span>
             </div>
@@ -60,6 +60,30 @@
         </section>
 
     </main>
+
+    <div class="modal" id="modal-detalle-tarea">
+        <section>
+            <div class="modal-header">
+                <h2>detalle de la tarea</h2>
+            </div>
+            <div class="modal-detalle-contenido">
+                <span class="modal-detalle-materia" id="detalle-materia"></span>
+                <p class="modal-detalle-descripcion" id="detalle-descripcion"></p>
+                <div class="modal-detalle-info">
+                    <span id="detalle-fecha"></span>
+                    <span id="detalle-hora" class="oculto"></span>
+                </div>
+                <div class="modal-detalle-badges">
+                    <span id="detalle-prioridad"></span>
+                    <span id="detalle-estado"></span>
+                </div>
+            </div>
+            <div class="modal-detalle-footer">
+                <a href="tareas.html" class="boton-ir-tareas">Ir a tareas</a>
+                <button class="boton-confirmar-cancelar" id="cerar-modal-detalle-footer">cerrar</button>
+            </div>
+        </section>
+    </div>
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
     <script src="js/dashboard.js"></script>

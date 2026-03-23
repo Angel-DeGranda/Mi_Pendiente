@@ -71,6 +71,7 @@ inputNombreEditar.addEventListener("input", () => {
     if(valor.length>0){
         inputNombreEditar.value = valor.charAt(0).toUpperCase() + valor.slice(1);
     }
+    spanErrorEditar.textContent = `${inputNombreEditar.value.length}/60 caracteres`;
 });
 
 formEditar.addEventListener("submit", async (e) => {
@@ -171,6 +172,7 @@ inputNombreAlta.addEventListener("input", () => {
     if(valor.length>0){
         inputNombreAlta.value = valor.charAt(0).toUpperCase() + valor.slice(1);
     }
+    spanErrorAlta.textContent = `${inputNombreAlta.value.length}/60 caracteres`;
 });
 
 formAlta.addEventListener("submit", async (e) => {

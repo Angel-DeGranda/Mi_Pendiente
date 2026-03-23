@@ -26,7 +26,7 @@
             </select>
             <div class="dias-clase-materia oculto" id="dias-clase-materia"></div>
             <label for="form-alta-textarea-descripcion">Descripcion de la tarea:</label>
-            <textarea name="" id="textarea-descripcion" class="form-alta-textarea-descripcion" rows="3" required></textarea>
+            <textarea name="" id="textarea-descripcion" class="form-alta-textarea-descripcion" rows="3"  maxlength="350" required></textarea>
             <span class="mensaje-error-campo oculto" id="error-descripcion-alta">La descripción contiene caracteres no válidos. Caracteres permitidos: letras, números y / " ! - _ . , ; : ( ) ¿ ? = $ # % + @</span>
             <label>Prioridad:</label>
             <div class="form-alta-contenedor-prioridad">
@@ -68,7 +68,7 @@
             <form id="form-pendiente" class="form-pendiente">
                 <input type="hidden" id="pendiente-tarea-id">
                 <label for="pendiente-anotacion">¿Por qué la dejas pendiente?</label>
-                <textarea id="pendiente-anotacion" rows="3"></textarea>
+                <textarea id="pendiente-anotacion" rows="3" maxlength="350" required></textarea>
                 <span class="mensaje-error-campo oculto" id="error-anotacion-pendiente">La anotación contiene caracteres no válidos. Caracteres permitidos: letras, números y / " ! - _ . , ; : ( ) ¿ ? = $ # % + @</span>
                 <button type="submit" class="boton-alta">Guardar</button>
             </form>
@@ -84,9 +84,9 @@
                 <input type="hidden" id="editar-tarea-id">
                 <div class="form-editar-tarea-scroll">
                     <label for="">Materia:</label>
-                    <select id="editar-tarea-materia"></select>
+                    <select id="editar-tarea-materia" required></select>
                     <label for="editar-tarea-descripcion">Descripción:</label>
-                    <textarea id="editar-tarea-descripcion" rows="3"></textarea>
+                    <textarea id="editar-tarea-descripcion" rows="3" maxlength="350" required></textarea>
                     <span class="mensaje-error-campo oculto" id="error-descripcion-editar">La descripción contiene caracteres no válidos. Caracteres permitidos: letras, números y / " ! - _ . , ; : ( ) ¿ ? = $ # % + @</span>
                     <label>Prioridad</label>
                     <div class="form-alta-contenedor-prioridad">
@@ -95,7 +95,7 @@
                         <label><input type="radio" name="prioridad-editar" value="Baja"> Baja</label>
                     </div>
                     <label for="editar-tarea-fecha">Fecha de entrega:</label>
-                    <input type="date" id="editar-tarea-fecha">
+                    <input type="date" id="editar-tarea-fecha" required>
                     <label for="editar-tarea-checkbox-tiempo"><input type="checkbox"
                             id="editar-tarea-checkbox-tiempo">¿Tiene hora de entrega?</label>
                     <label for="editar-tarea-time" id="editar-tarea-label-time" class="oculto">Hora de entrega:</label>

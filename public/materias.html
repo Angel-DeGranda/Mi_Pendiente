@@ -18,7 +18,7 @@
         <h2 class="form-titulo">Agregar nueva materia</h2>
         <form class="form-alta">
             <label for="form-materia">Nombre de la materia:</label>
-            <input type="text" name="nombre-materia" id="form-materia" required>
+            <input type="text" name="nombre-materia" id="form-materia" maxlength="60" required>
             <span class="error-nombre-alta">Solo se permiten letras, números, espacios y "/".</span>
             <div>
                 <fieldset>
@@ -49,7 +49,7 @@
             <form id="form-editar-materia" class="form-editar">
                 <input type="hidden" id="form-editar-materia-id">
                 <label for="form-editar-nombre-materia">Nombre de la materia:</label>
-                <input type="text" name="nombre-materia" id="form-editar-nombre-materia">
+                <input type="text" name="nombre-materia" id="form-editar-nombre-materia" maxlength="60" required>
                 <span class="error-nombre-editar">Solo se permiten letras, números, espacios y "/".</span>
                 <div>
                     <fieldset>
