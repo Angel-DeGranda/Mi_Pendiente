@@ -1,6 +1,5 @@
 const formAlta = document.querySelector(".form-alta");
 const contenedor = document.querySelector(".tabla-materias-contenedor");
-const buttonCerrarSesion = document.querySelector(".menu-principal-cerrar-sesion");
 
 const inputNombreAlta = document.getElementById("form-materia");
 const soloPermitidos = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ0-9\s/]+$/;
@@ -14,7 +13,7 @@ const formEliminar = document.getElementById("form-eliminar-materia");
 
 const modalEditar = document.getElementById("modal-editar-materia");
 const formEditar = document.getElementById("form-editar-materia");
-const buttonCerrarSesionModal = document.getElementById(("cerrar-modal"));
+const buttonCerrarModal = document.getElementById(("cerrar-modal"));
 const checkboxesEditar = document.querySelectorAll(".dia-semana-editar");
 const inputIdEditar = document.getElementById("form-editar-materia-id");
 const inputNombreEditar = document.getElementById("form-editar-nombre-materia");
@@ -62,7 +61,7 @@ const abrirModalEditar = (materia) => {
 
 }
 
-buttonCerrarSesionModal.addEventListener("click", () => {
+buttonCerrarModal.addEventListener("click", () => {
     modalEditar.classList.remove("activo");
 });
 

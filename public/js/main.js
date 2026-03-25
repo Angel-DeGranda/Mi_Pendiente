@@ -1,13 +1,15 @@
-const botonCerrarSesion = document.querySelector(".menu-principal-cerrar-sesion");
+const botonCerrarSesion = document.querySelectorAll(".menu-principal-cerrar-sesion");
 
-botonCerrarSesion.addEventListener("click", async () => {
-    const response = await fetch("/api/auth/logout", {
-        method: "POST"
-    });
+botonCerrarSesion.forEach(btn => {
+    btn.addEventListener("click", async () => {
+        const response = await fetch("/api/auth/logout", {
+            method: "POST"
+        });
 
-    if(response.ok){
-        window.location.href = "/";
-    }
+        if (response.ok) {
+            window.location.href = "/";
+        }
+    })
 });
 
 //navbar
@@ -30,7 +32,7 @@ sidebarOverlay.addEventListener("click", cerrarSidebar);
 
 const paginaActual = window.location.pathname.split("/").pop();
 document.querySelectorAll(".menu-links a, .sidebar-nav a").forEach(link => {
-    if(link.getAttribute("href")===paginaActual){
+    if (link.getAttribute("href") === paginaActual) {
         link.classList.add("menu-link-activo");
     }
 });
