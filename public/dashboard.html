@@ -11,13 +11,33 @@
 </head>
 
 <body>
+    <!-- barra de navegación -->
     <nav class="menu-principal">
+        <button class="menu-hamburger" id="menu-hamburger">&#9776</button>
         <h2 class="menu-principal-titulo">Mi Pendiente</h2>
-        <a href="materias.html">Materias</a>
-        <a href="tareas.html">Tareas</a>
+        <div class="menu-links">
+            <a href="dashboard.html"> Inicio</a>
+            <a href="materias.html">Materias</a>
+            <a href="tareas.html">Tareas</a>
+        </div>
         <button class="menu-principal-cerrar-sesion">Cerrar sesión</button>
     </nav>
 
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-titulo">Mi Pendiente</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">Inicio</a>
+            <a href="materias.html">Materias</a>
+            <a href="tareas.html">Tareas</a>
+            <button class="menu-principal-cerrar-sesion">Cerrar sesión</button>
+        </nav>
+        
+    </aside>
+
+    <!-- Contenido de la pagina -->
     <main class="dashboard-main">
 
         <section class="dashboard-header">
