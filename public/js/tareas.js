@@ -141,9 +141,9 @@ const renderTareas = (tareas, contenedor) => {
         estadosContenedor.className = "card-tarea-contenedor-estados";
 
         const estado = document.createElement("span");
-        const estadoValor = tarea.completada ? "Completada" : tarea.anotacion ? "Pendiente" : "Sin realizar";
+        const estadoValor = tarea.completada ? "completada" : tarea.anotacion ? "pendiente" : "sin realizar";
         estado.className = `card-tarea-contenedor-estado card-tarea-estado-${estadoValor}`;
-        estado.textContent = tarea.completada ? "Completada" : tarea.anotacion ? "Pendiente" : "Sin realizar";
+        estado.textContent = tarea.completada ? "completada" : tarea.anotacion ? "pendiente" : "sin realizar";
 
         const anotacion = document.createElement("span");
         anotacion.className = "card-tarea-contenedor-anotacion";

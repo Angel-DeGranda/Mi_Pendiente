@@ -7,10 +7,19 @@ const statVencidas = document.getElementById("stat-vencidas");
 const listaPendientes = document.getElementById("lista-pendientes");
 const listaCompletadasHoy = document.getElementById("lista-completadas-hoy");
 
+const modalDetalleTarea = document.getElementById("modal-detalle-tarea");
+const detalleMateria = document.getElementById("detalle-materia");
+const detalleDescripcion = document.getElementById("detalle-descripcion");
+const detalleFecha = document.getElementById("detalle-fecha");
+const detalleHora = document.getElementById("detalle-hora");
+const detallePrioridad = document.getElementById("detalle-prioridad");
+const detalleEstado = document.getElementById("detalle-estado");
+const cerrarModalDetalle = document.getElementById("cerar-modal-detalle-footer");
+
 const init = async () => {
     const resUser = await fetch("/api/auth/userData");
 
-    if(!resUser.ok){
+    if (!resUser.ok) {
         window.location.href = "/";
         return;
     }
@@ -35,7 +44,7 @@ const cargarDashboard = async () => {
     const pendientes = await resPendiente.json();
     const completadas = await resCompletadas.json();
 
-    if(!resPendiente.ok || !resCompletadas.ok){
+    if (!resPendiente.ok || !resCompletadas.ok) {
         console.error("Error al cargar tareas");
         return;
     }
@@ -64,7 +73,7 @@ const cargarDashboard = async () => {
 };
 
 const renderPendientes = (tareas, hoy) => {
-    if(tareas.length === 0){
+    if (tareas.length === 0) {
         const p = document.createElement("p");
         p.className = "dashboard-vacio";
         p.textContent = "No hay tareas pendientes.";
@@ -76,7 +85,7 @@ const renderPendientes = (tareas, hoy) => {
 
     const grupos = {};
     tareas.forEach(t => {
-        if(!grupos[t.fecha_entrega]){
+        if (!grupos[t.fecha_entrega]) {
             grupos[t.fecha_entrega] = [];
         }
         grupos[t.fecha_entrega].push(t);
@@ -147,7 +156,7 @@ const renderPendientes = (tareas, hoy) => {
 }
 
 const renderCompletadasHoy = (tareas) => {
-    if(tareas.length === 0){
+    if (tareas.length === 0) {
         const p = document.createElement("p");
         p.className = "dashboard-vacio";
         p.textContent = "No hay tareas completadas para hoy.";
@@ -191,13 +200,12 @@ const renderCalendario = (tareas) => {
         date: tarea.fecha_entrega,
         backgroundColor: tarea.completada
             ? "#22c55e"
-            : tarea.prioridad === "Alta"
-            ? "#e11d48"
-            : tarea.prioridad === "Media"
-            ? "#f59e0b"
-            : "#4f46e5",
+            : tarea.anotacion
+                ? "#f59e0b"
+                : "#94a3b8",
         borderColor: "transparent",
-        textColor: "#ffffff"
+        textColor: "#ffffff",
+        extendedProps: { tarea }
     }));
 
     const calendar = new FullCalendar.Calendar(contenedor, {
@@ -209,11 +217,38 @@ const renderCalendario = (tareas) => {
             right: ""
         },
         events: eventos,
-        height: "auto"
+        height: "auto",
+        eventClick: (info) => {
+            const tarea = info.event.extendedProps.tarea;
+            detalleMateria.textContent = tarea.materias?.nombre ?? "";
+            detalleDescripcion.textContent = tarea.descripcion;
+            detalleFecha.textContent = `Entrega: ${new Date(tarea.fecha_entrega + "T00:00:00").toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}`;
+            if (tarea.hora_entrega) {
+                detalleHora.textContent = `a las ${tarea.hora_entrega.slice(0, 5)}`;
+                detalleHora.classList.remove("oculto");
+            } else {
+                detalleHora.textContent = "";
+                detalleHora.classList.add("oculto");
+            }
+            if (tarea.prioridad) {
+                detallePrioridad.textContent = tarea.prioridad;
+                detallePrioridad.className = `card-tarea-prioridad card-tarea-prioridad-${tarea.prioridad.toLowerCase()}`;
+            } else {
+                detallePrioridad.textContent = "";
+                detallePrioridad.className = "";
+            }
+            const estadoClase = tarea.completada ? "completada" : tarea.anotacion ? "pendiente" : "sin-realizar";
+            detalleEstado.className = `card-tarea-contenedor-estado card-tarea-estado-${estadoClase}`;
+            detalleEstado.textContent = tarea.completada ? "Completada" : tarea.anotacion ? "Pendiente" : "Sin realizar";
+            modalDetalleTarea.classList.add("activo");
+        }
     });
 
     calendar.render();
 };
 
+cerrarModalDetalle.addEventListener("click", () => {
+    modalDetalleTarea.classList.remove("activo");
+});
 
 init();
