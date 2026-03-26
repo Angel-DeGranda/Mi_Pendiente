@@ -45,6 +45,7 @@
             <select name="" id="select-materia" class="form-alta-select-materia" required>
                 <option value="">Seleccione una materia</option>
             </select>
+            <p class="aviso-sin-materias oculto">No tienes materias registradas. <a href="materias.html">Agregar materia.</a></p>
             <div class="dias-clase-materia oculto" id="dias-clase-materia"></div>
             <label for="form-alta-textarea-descripcion">Descripcion de la tarea:</label>
             <textarea name="" id="textarea-descripcion" class="form-alta-textarea-descripcion" rows="3"  maxlength="350" required></textarea>
@@ -70,6 +71,26 @@
 
     <section class="section-consulta">
         <h2 class="consulta-titulo">Tareas pendientes y sin realizar</h2>
+        
+        <div class="filtros-contenedor">
+            <select id="filtro-materia">
+                <option value="">Todas las materias</option>
+            </select>
+
+            <div class="filtro-grupo">
+                <button class="filtro-btn filtro-activo" data-filtro-prioridad="">Todas</button>
+                <button class="filtro-btn" data-filtro-prioridad="Alta">Alta</button>
+                <button class="filtro-btn" data-filtro-prioridad="Media">Media</button>
+                <button class="filtro-btn" data-filtro-prioridad="Baja">Baja</button>
+            </div>
+
+            <div class="filtro-grupo">
+                <button class="filtro-btn filtro-activo" data-filtro-estado="">Todas</button>
+                <button class="filtro-btn" data-filtro-estado="sin realizar">Sin realizar</button>
+                <button class="filtro-btn" data-filtro-estado="pendiente">Pendiente</button>
+            </div>
+        </div>
+
         <div class="lista-tareas-contenedor" id="lista-tareas-activas">
 
         </div>

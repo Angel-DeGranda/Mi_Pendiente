@@ -111,9 +111,36 @@ const renderPendientes = (tareas, hoy) => {
         tituloGrupo.textContent = etiqueta;
         grupo.appendChild(tituloGrupo);
 
+       
         items.forEach(tarea => {
             const item = document.createElement("div");
             item.className = "dashboard-tarea-item";
+
+            item.addEventListener("click", () => {
+                detalleMateria.textContent = tarea.materias?.nombre ?? "";
+                detalleDescripcion.textContent = tarea.descripcion;
+                detalleFecha.textContent = `Entrega: ${new Date(tarea.fecha_entrega + "T00:00:00").toLocaleDateString("es-MX", {weekday: "long", day: "numeric", month: "long", year: "numeric"})}`;
+                if(tarea.hora_entrega){
+                    detalleHora.textContent = `a las ${tarea.hora_entrega.slice(0,5)}`;
+                    detalleHora.classList.remove("oculto");
+                }else{
+                    detalleHora.textContent = "";
+                    detalleHora.classList.add("oculto");
+                }
+
+                if(tarea.prioridad){
+                    detallePrioridad.textContent = tarea.prioridad;
+                    detallePrioridad.className = `card-tarea-prioridad card-tarea-prioridad-${tarea.prioridad.toLowerCase()}`;
+                }else{
+                    detallePrioridad.textContent = "";
+                    detallePrioridad.className = "";
+                }
+
+                const estadoClase = tarea.completada ? "completada": tarea.anotacion ? "pendiente": "sin-realizar";
+                detalleEstado.className = `card-tarea-contenedor-estado card-tarea-estado-${estadoClase} tarea`
+                detalleEstado.textContent = tarea.completada ? "Completada": tarea.anotacion ? "Pendiente": "Sin realizar";
+                modalDetalleTarea.classList.add("activo");
+            });
 
             const info = document.createElement("div");
             info.className = "dashboard-tarea-info";

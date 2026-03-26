@@ -399,6 +399,67 @@
     border-radius: 20px;
 }
 
+/* === FILTROS === */
+.filtros-contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    margin-bottom: 1rem;
+}
+
+.filtro-grupo {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.filtro-btn {
+    padding: 0.35rem 0.9rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background-color: #f8fafc;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filtro-btn:hover {
+    border-color: #4f46e5;
+    color: #4f46e5;
+}
+
+.filtro-btn.filtro-activo {
+    background-color: #4f46e5;
+    border-color: #4f46e5;
+    color: #ffffff;
+}
+
+#filtro-materia {
+    padding: 0.35rem 0.75rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #64748b;
+    background-color: #f8fafc;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+#filtro-materia:focus {
+    border-color: #4f46e5;
+    color: #4f46e5;
+}
+
 /* === MENSAJE ERROR CAMPO === */
 .mensaje-error-campo {
     font-size: 0.8rem;

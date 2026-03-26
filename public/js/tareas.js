@@ -41,6 +41,11 @@ const validarTexto = (texto) => caracteresPermitidos.test(texto);
 
 const hoyISO = () =>  new Date().toLocaleDateString("en-CA");
 
+let todasLasTareasActivas = [];
+let filtroPrioridad = "";
+let filtroEstado = "";
+let filtroMateria = "";
+
 inputFecha.min = hoyISO();
 
 checkboxTiempo.addEventListener("change", () => {
@@ -57,6 +62,12 @@ const cargarMaterias = async () => {
 
     if (response.ok) {
         materiasData = data
+
+        if(data.length === 0){
+            document.querySelector(".aviso-sin-materias").classList.remove("oculto");
+            document.getElementById("form-alta-tarea").querySelector("button[type='submit']").Disabled = true;
+        }
+
         data.forEach(materia => {
             const option = document.createElement("option");
             option.value = materia.id;
@@ -84,6 +95,28 @@ selectMateria.addEventListener("change", () => {
     }
 
 });
+
+const aplicarFiltros = () => {
+    let resultado = todasLasTareasActivas;
+
+    if(filtroMateria){
+        resultado = resultado.filter(t => String(t.materia_id) === filtroPrioridad);
+    }
+
+    if(filtroPrioridad){
+        resultado = resultado.filter(t => t.prioridad === filtroPrioridad);
+    }
+
+    if(filtroEstado){
+        const estado = filtroEstado;
+        resultado = resultado.filter(t => {
+            const estadoTareas = t.anotacion ? "pendiente" : "sin realizar"
+            return estadoTareas === estado;
+        });
+    }
+
+    renderTareas(resultado, listaTareasActivas);
+}
 
 const cargarTareas = async (completada) => {
     const response = await fetch(`/api/tareas?completada=${completada}`);
