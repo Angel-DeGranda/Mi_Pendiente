@@ -68,11 +68,18 @@ const cargarMaterias = async () => {
             document.getElementById("form-alta-tarea").querySelector("button[type='submit']").Disabled = true;
         }
 
+        const filtroSelect = document.getElementById("filtro-materia")
         data.forEach(materia => {
             const option = document.createElement("option");
             option.value = materia.id;
             option.textContent = materia.nombre;
             selectMateria.appendChild(option);
+
+            //opciones para el filtro que es un select
+            const optionFiltro = document.createElement("option");
+            optionFiltro.value = materia.id;
+            optionFiltro.textContent = materia.nombre;
+            filtroSelect.appendChild(optionFiltro);
         });
     } else {
         console.error("Error al cargar materias: ", data.error);
@@ -127,7 +134,8 @@ const cargarTareas = async (completada) => {
         if (completada) {
             renderTareas(data, listaTareasCompletadas);
         } else {
-            renderTareas(data, listaTareasActivas);
+            todasLasTareasActivas = data;
+            aplicarFiltros();
         }
     } else {
         console.error("Error al cargar tareas: ", data.error);
@@ -423,6 +431,29 @@ formAlta.addEventListener("submit", async (e) => {
         console.error("Error al crear tarea: ", data.error);
     }
 });
+
+document.querySelectorAll("[data-filtro-prioridad]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-filtro-prioridad]").forEach(b => b.classList.remove("filtro-activo"));
+        btn.classList.add("filtro-activo");
+        filtroPrioridad = btn.dataset.filtroPrioridad;
+        aplicarFiltros();
+    })
+});
+
+document.querySelectorAll("[data-filtro-estado]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-filtro-estado]").forEach(b => b.classList.remove("filtro-activo"));
+        btn.classList.add("filtro-activo");
+        filtroEstado = btn.dataset.filtroEstado;
+        aplicarFiltros();
+    });
+});
+
+document.getElementById("filtro-materia").addEventListener("change", (e) => {
+    filtroMateria = e.target.value;
+    aplicarFiltros();
+})
 
 cargarMaterias();
 cargarTareas(false);
