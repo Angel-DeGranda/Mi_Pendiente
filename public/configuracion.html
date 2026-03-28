@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración - Mi Pendiente</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/configuracion.css">
+</head>
+
+<body>
+    <!-- barra de navegación -->
+    <nav class="menu-principal">
+        <button class="menu-hamburger" id="menu-hamburger">&#9776</button>
+        <h2 class="menu-principal-titulo">Mi Pendiente</h2>
+        <div class="menu-links">
+            <a href="dashboard.html"> Inicio</a>
+            <a href="materias.html">Materias</a>
+            <a href="tareas.html">Tareas</a>
+            <a href="configuracion.html">Configuración</a>
+        </div>
+        <button class="menu-principal-cerrar-sesion">Cerrar sesión</button>
+    </nav>
+
+    <!-- sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-titulo">Mi Pendiente</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">Inicio</a>
+            <a href="materias.html">Materias</a>
+            <a href="tareas.html">Tareas</a>
+            <a href="configuracion.html">Configuración</a>
+        </nav>
+        <div class="sidebar-footer">
+            <button class="menu-principal-cerrar-sesion">Cerrar sesión</button>
+        </div>
+    </aside>
+
+    <!-- Contenido de la pagina -->
+    <main class="config-main">
+        <section class="config-seccion">
+            <h2 class="config-seccion-titulo">Perfil</h2>
+            <form id="form-perfil" class="config-form">
+                <label for="input-nombre">Nombre:</label>
+                <input type="text" id="input-nombre" maxlength="60">
+                <label for="select-saludo">Saludo:</label>
+                <select name="" id="select-saludo">
+                    <option value="Hola, ">Hola</option>
+                    <option value="Buen día, ">Buen dia</option>
+                </select>
+                <label>Correo</label>
+                <input type="text" id="input-email" disabled required>
+                <button type="submit" class="config-btn-guardar">Guardar cambios</button>
+            </form>
+        </section>
+
+        <section class="config-seccion">
+            <h2 class="config-seccion-titulo">Preferencias</h2>
+            <form id="form-preferencias" class="config-form">
+                <label for="input-dias">Días de anticipación para las notificaiones del sistema:</label>
+                <select id="input-dias">
+                    <option value="1">1 día antes</option>
+                    <option value="2">2 días antes</option>
+                    <option value="3">3 días antes</option>
+                    <option value="5">5 días antes</option>
+                    <option value="7">1 semana antes</option>
+                </select>
+                <button type="submit" class="config-btn-guardar">Guardar preferencias</button>
+            </form>
+        </section>
+
+        <section class="config-seccion">
+            <h2 class="config-seccion-titulo">Información de la cuenta</h2>
+            <div class="config-info-items">
+                <span class="config-info-label">Miembro desde:</span>
+                <span class="config-info-valor" id="info-fecha"></span>
+            </div>
+            <div class="config-info-items">
+                <span class="config-info-label">Tareas creadas:</span>
+                <span class="config-info-valor" id="info-tareas-total"></span>
+            </div>
+            <div class="config-info-items">
+                <span class="config-info-label">Tareas completadas:</span>
+                <span class="config-info-valor" id="info-tareas-completadas"></span>
+            </div>
+        </section>
+
+        <section class="config-seccion">
+            <h2 class="config-seccion-titulo">Acerca del desarrollador</h2>
+            <div class="config-info-contenedor">
+                <div class="config-info-items">
+                    <span class="config-info-label">Nombre:</span>
+                    <span class="config-info-valor">Ángel De Granda </span>
+                </div>
+                <div class="config-info-items">
+                    <span class="config-info-label">GitHub:</span>
+                    <a class="config-info-valor config-info-link" href="" target="_blank" rel="noopener noreferrer">Angel_DeGranda</a>
+                </div>
+                <div class="config-info-items">
+                    <span class="config-info-label">Versión de la aplicación:</span>
+                    <span class="config-info-valor">1.0.0</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/configuracion.js"></script>
+</body>
+
+</html>

@@ -17,15 +17,23 @@ const detalleEstado = document.getElementById("detalle-estado");
 const cerrarModalDetalle = document.getElementById("cerar-modal-detalle-footer");
 
 const init = async () => {
-    const resUser = await fetch("/api/auth/userData");
+    const [resUser, resPref] = await Promise.all([
+        fetch("/api/auth/userData"),
+        fetch("/api/preferencias")
+    ]);
 
-    if (!resUser.ok) {
+    if(!resUser.ok){
         window.location.href = "/";
         return;
     }
 
     const user = await resUser.json();
-    saludo.textContent = `Hola, ${user.nombre ?? "Usuario"}`;
+    const pref = resPref.ok ? await resPref.json() : null;
+
+    const nombre = pref?.nombre ?? user.nombre ?? "Usuario";
+    const saludoTexto = pref?.saludo ?? "Hola, ";
+
+    saludo.textContent = `${saludoTexto}${nombre}`;
 
     const hoy = new Date();
     dashFecha.textContent = hoy.toLocaleDateString("es-MX", {

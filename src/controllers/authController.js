@@ -24,6 +24,16 @@ const login = async (req, res) => {
             maxAge: 8 * 60 * 60 * 1000
         });
 
+        await supabase
+        .from("preferencias")
+        .upsert({
+            user_id: data.user.id,
+            email: data.user.email,
+            nombre: data.user.user_metadata?.nombre ?? "Usuario",
+            saludo: "Hola, ",
+            dias_anticipacion: 1
+        }, { onConflict: "user_id", ignoreDuplicates: true});
+
         return res.status(200).json({message: "Login exitoso"});
     }
     catch(err){
@@ -40,7 +50,8 @@ const userData = async (req, res) => {
     return res.status(200).json({
         id: req.user.id,
         email: req.user.email,
-        nombre: req.user.user_metadata?.nombre ?? null
+        nombre: req.user.user_metadata?.nombre ?? null,
+        created_at : req.user.created_at
     });
 }
 

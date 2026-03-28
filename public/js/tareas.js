@@ -65,7 +65,7 @@ const cargarMaterias = async () => {
 
         if(data.length === 0){
             document.querySelector(".aviso-sin-materias").classList.remove("oculto");
-            document.getElementById("form-alta-tarea").querySelector("button[type='submit']").Disabled = true;
+            document.getElementById("form-alta-tarea").querySelector("button[type='submit']").disabled = true;
         }
 
         const filtroSelect = document.getElementById("filtro-materia")
@@ -107,7 +107,7 @@ const aplicarFiltros = () => {
     let resultado = todasLasTareasActivas;
 
     if(filtroMateria){
-        resultado = resultado.filter(t => String(t.materia_id) === filtroPrioridad);
+        resultado = resultado.filter(t => String(t.materia_id) === filtroMateria);
     }
 
     if(filtroPrioridad){
@@ -233,8 +233,10 @@ const renderTareas = (tareas, contenedor) => {
             textareaEditarDescripcion.value = tarea.descripcion;
             inputEditarFecha.value = tarea.fecha_entrega
 
-            inputEditarFecha.min = hoyISO();
-
+            if(new Date(tarea.fecha_entrega) >= new Date(hoyISO())){
+                inputEditarFecha.min = hoyISO();
+            }
+            
             selectEditarMateria.innerHTML = "";
             const response = await fetch("/api/materias");
             const materias = await response.json();
@@ -332,7 +334,7 @@ formPendiente.addEventListener("submit", async (e) => {
     const id = inputPendienteTareaId.value;
     const anotacion = textareaPendienteAnotacion.value.trim();
 
-    if (!validarTexto(anotacion)) {
+    if (!anotacion || !validarTexto(anotacion)) {
         errorAnotacionPendiente.classList.remove("oculto");
         return;
     }
@@ -354,7 +356,7 @@ formEditarTarea.addEventListener("submit", async (e) => {
     const fecha_entrega = inputEditarFecha.value;
     const hora_entrega = checkboxEditarTiempo.checked ? inputEditarTime.value : null;
 
-    if (!validarTexto(descripcion)) {
+    if (!descripcion || !validarTexto(descripcion)) {
         errorDescripcionEditar.classList.remove("oculto");
         return;
     }
@@ -406,7 +408,7 @@ formAlta.addEventListener("submit", async (e) => {
     const fecha_entrega = inputFecha.value;
     const hora_entrega = checkboxTiempo.checked ? inputTime.value : null;
 
-    if (!validarTexto(descripcion)) {
+    if (!descripcion || !validarTexto(descripcion)) {
         errorDescripcionAlta.classList.remove("oculto");
         return;
     }
