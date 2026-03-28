@@ -90,3 +90,7 @@ EMAIL_PASS=tu_contraseña_de_aplicacion
 
 [![GitHub](https://img.shields.io/badge/GitHub-Angel__DeGranda-181717?logo=github)](https://github.com/Angel-DeGranda)
 
+## 📄 Licencia
+
+Este proyecto está bajo la licencia [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+Puedes usar y compartir este proyecto siempre que no sea con fines comerciales y se dé crédito al autor.

@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/Angel-DeGranda/Mi_Pendiente.git"
   },
-  "license": "MIT",
+  "license": "CC-BY-NC-4.0",
   "author": "Ángel David De Granda Santos",
   "type": "commonjs",
   "main": "server.js",
