@@ -18,14 +18,14 @@ Mi Pendiente es una aplicación web personal diseñada para estudiantes que nece
 
 ## 🚀 Demo
 
-🔗 [Ver aplicación en vivo](url-del-deploy)
+🔗 [Ver aplicación](https://excellent-gaye-proyecto-inicial-03758f4a.koyeb.app)
 
 ### Credenciales de prueba
 
 | Campo | Valor |
 |-------|-------|
-| Correo | correo-de-prueba@gmail.com |
-| Contraseña | contraseña-de-prueba |
+| Correo | user@test.com |
+| Contraseña | usertest123 |
 
 ## ✨ Funcionalidades
 
